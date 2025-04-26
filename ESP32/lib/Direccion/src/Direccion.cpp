@@ -8,6 +8,8 @@
 #define ADC_CHANNEL ADC1_CHANNEL_8
 // variables globales
 float Lectura, referencia;
+float Error;
+uint16_t duty;
 hw_timer_t *timer = NULL;
 TaskHandle_t _Direccion;
 void ADClectura(void *parametros);
@@ -29,16 +31,16 @@ void IRAM_ATTR onTimer()
     datos[0] = (float)adc1_get_raw(ADC_CHANNEL);
 
     Lectura = ((datos[0]) + datos[1] + datos[2] + datos[3] + datos[4] + datos[5] + datos[6] + datos[7] + datos[8] + datos[9]) / 10.0;
-    Lectura = -0.087804 * Lectura + 446.7;
+    Lectura =  (float)(-((0.1350844278 * Lectura) - 710.4277));
 
     static const double ceE[3] = {0.179104477611940	,-0.139303482587065,0};
     static const double ceS[3] = {1	,0.990049751243781,0};
     static double Vs[3] = {0};
     static double Ve[3] = {0};
-    uint16_t duty;
+   
 
     referencia = abs(angulo);
-    float Error = (Lectura - referencia) / 180;
+     Error = (Lectura - referencia) / 180;
     Ve[2] = Ve[1];
     Ve[1] = Ve[0];
     Ve[0] = Error;
@@ -109,7 +111,7 @@ void _direccion(void *parametro)
     while (1)
     {
 
-        Serial.printf(">adc:%f\n>error:%f\n>an:%f\n>duty:%d\n", Lectura);
+        Serial.printf(">adc:%f\n>error:%f\n", Lectura,Error);
         delay(4);
     }
 }
