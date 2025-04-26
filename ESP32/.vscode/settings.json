@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "*.m": "matlab",
+        "cmath": "cpp",
+        "*.tcc": "cpp",
+        "algorithm": "cpp"
+    },
+    "liveServer.settings.port": 5501
+}
