@@ -31,7 +31,7 @@ void IRAM_ATTR onTimer()
     datos[0] = (float)adc1_get_raw(ADC_CHANNEL);
 
     Lectura = ((datos[0]) + datos[1] + datos[2] + datos[3] + datos[4] + datos[5] + datos[6] + datos[7] + datos[8] + datos[9]) / 10.0;
-    Lectura =  (float)(-((0.1350844278 * Lectura) - 710.4277));
+    Lectura =  (float)((-0.06756756 * Lectura)+445 );
 
     static const double ceE[3] = {0.179104477611940	,-0.139303482587065,0};
     static const double ceS[3] = {1	,0.990049751243781,0};

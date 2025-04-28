@@ -5,5 +5,6 @@
         "*.tcc": "cpp",
         "algorithm": "cpp"
     },
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "C_Cpp.default.configurationProvider": "go2sh.cmake-integration"
 }
