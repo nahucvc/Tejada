@@ -39,7 +39,13 @@ void IRAM_ATTR onTimer()
     static double Ve[3] = {0};
    
 
-    referencia = abs(angulo);
+    referencia = abs(angulo)*1.1;
+    if (referencia>185)
+    {
+        referencia=185;
+    }
+    
+
      Error = (Lectura - referencia) / 180;
     Ve[2] = Ve[1];
     Ve[1] = Ve[0];

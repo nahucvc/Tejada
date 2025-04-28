@@ -50,7 +50,7 @@ function drag(event) {
     // Calculamos el Ã¡ngulo de direcciÃ³n del movimiento del stick
     const angle = Math.atan2(offsetY, offsetX);
     angulo.angle = angle * (180 / Math.PI);
-    angulo.angle = angulo.angle * (-1) -5;
+    angulo.angle = angulo.angle * (-1) ;
    
     // Calculamos las coordenadas X e Y del movimiento del stick segÃºn el Ã¡ngulo y la distancia
     const x = distance * Math.cos(angle);
