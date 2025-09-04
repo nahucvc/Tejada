@@ -1,0 +1,25 @@
+services:
+  ws-fastapi-x11:
+    image: python:3.12-slim
+    container_name: ws-fastapi-x11
+    working_dir: /app
+    volumes:
+      - ./app:/app
+    environment:
+      PYTHONDONTWRITEBYTECODE: "1"
+      
+      PYTHONUNBUFFERED: "1"
+      DISPLAY: DISPLAY  # ← VcXsrv/X410 en Windows
+      GUI_HEADLESS: "0"    # 👈 fuerza modo headless (evita crash)
+    ports:
+      - "80:80"
+    command: >
+      sh -c "
+        set -e &&
+        apt-get update &&
+        DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends python3-tk tk libx11-6 libxext6 libxrender1 libxft2 libsm6 xauth &&
+        rm -rf /var/lib/apt/lists/* &&
+        pip install --no-cache-dir fastapi 'uvicorn[standard]' websockets &&
+        exec uvicorn ServidorWebsocket:app --host 0.0.0.0 --port 80
+      "
+    restart: unless-stopped
