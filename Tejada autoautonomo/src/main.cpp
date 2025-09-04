@@ -1,14 +1,32 @@
 #include <Arduino.h>
-#include <Inicio.h>
+//#include <Inicio.h>
+
+
+
+#ifdef ESP32_ogas 
+void saludar ()
+{
+  Serial.printf("Hola soy una esp32\n");
+}
+#endif
+
+#ifndef ESP32_ogas 
+void saludar ()
+{
+  Serial.printf("Hola soy otra placa \n");
+}
+#endif
+
 
 uint32_t ADC_Valor=0;
 void setup() {
   Serial.begin(115200);
-  iniciarPerifericos();
+  
   
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+   saludar();
+  delay(100);
 }
 
