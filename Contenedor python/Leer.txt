@@ -1,14 +1,1 @@
-Ejecución de aplicaciones GUI en macOS/Windows
-Para macOS y Windows, el reenvío de X11 no es tan sencillo, ya que estas plataformas no utilizan X11 de forma nativa para la visualización gráfica. Sin embargo, puede usar XQuartz (macOS) o un servidor X como VcXsrv (Windows) para configurar un entorno X11.
-
-macOS : instala XQuartz y configúralo para permitir conexiones desde Docker.
-Windows : instale VcXsrv para proporcionar un entorno X11 con el que Docker pueda interactuar.
-Para ambas plataformas, después de configurar el servidor X, siga los mismos pasos que para Linux pero con algunas modificaciones en la DISPLAYvariable.
-
-Para macOS:
-
-export DISPLAY=host.docker.internal:0
-
-Para Windows (con VcXsrv):
-
-export DISPLAY=host.docker.internal:0.0
+exec uvicorn ServidorWebsocket:app --host 0.0.0.0 --port 80
