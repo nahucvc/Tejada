@@ -19,7 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
-#include "dma.h"
+#include "dac.h"
 #include "tim.h"
 #include "usb.h"
 #include "gpio.h"
@@ -90,15 +90,14 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_DMA_Init();
   MX_ADC1_Init();
   MX_TIM8_Init();
   MX_USB_PCD_Init();
+  MX_TIM7_Init();
+  MX_DAC1_Init();
   /* USER CODE BEGIN 2 */
-  uint16_t ADC_Valor;
-  HAL_ADC_Start_DMA(&hadc1, &ADC_Valor, 1);
-
-  HAL_TIM_Base_Start(&htim8);
+  HAL_DAC_Start(&hdac1,DAC_CHANNEL_1 );
+  HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1,DAC_ALIGN_12B_R, 2500);
   /* USER CODE END 2 */
 
   /* Infinite loop */
