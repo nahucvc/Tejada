@@ -1,9 +1,9 @@
 #include "Control.h"
-#define APAGADO_ACELERACION_MS 250
+
 
 float Aceleracion = 0;
 bool AC_Recibido = 0;
-
+float Angulo =0;
 void Direccion ()
 {
 
@@ -16,6 +16,7 @@ void Control()
     if (AC_Recibido)
     {
         milisegundos = 0;
+        AC_Recibido=0;
     }
     else
     {
@@ -25,10 +26,12 @@ void Control()
 #ifdef METRICA
     Serial.printf(">valorADC:%d\n", ValorADC);
     Serial.printf(">kalman:%d\n", ADC_kalman);
-    Serial.printf(">aceleracion:%d\n", Aceleracion);
+    Serial.printf(">aceleracion:%f\n", Aceleracion);
+    Serial.printf(">Angulo:%f\n", Angulo);
 #endif
     if (milisegundos >= APAGADO_ACELERACION_MS)
     {
+        Aceleracion=0;
         milisegundos = 0;
     }
 

@@ -3,9 +3,9 @@
 #include <Inicio.h>
 
 
-extern float Aceleracion0;
+extern float Aceleracion;
 extern bool AC_Recibido;
-
+extern float Angulo;
 
 
 

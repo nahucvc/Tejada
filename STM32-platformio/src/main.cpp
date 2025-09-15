@@ -1,15 +1,15 @@
 #include <Arduino.h>
 #include <Inicio.h>
+#include <Comunicacion.h>
 
-
-
-void setup() {
+void setup()
+{
+  inicializar_pines();
+  Serial1.begin(115200);
   InicioConfig();
 }
 
-void loop() {
-  
-  HAL_Delay(10);
-  
+void loop()
+{
+  Comunicacion_Serial();
 }
-

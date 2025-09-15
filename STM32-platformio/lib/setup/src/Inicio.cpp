@@ -3,7 +3,7 @@
 //Variables Globales
 uint32_t ValorADC;
 uint32_t ADC_kalman;
-KalmanFilter k1(0/*valor inicial*/,1 /*incertidumbre inicial*/,1 /*Ganacia de Kalman inicial*/ ,7/*Varianza de la medición*/); //objeto con los metodos y varibles necesarios para el filtro
+KalmanFilter k1(0/*valor inicial*/,1 /*incertidumbre inicial*/,0.2 /*Ganacia de Kalman inicial*/ ,5/*Varianza de la medición*/); //objeto con los metodos y varibles necesarios para el filtro
 
 // Función para configurar el clock del microcontrolador
 void SystemClock_Config(void)
