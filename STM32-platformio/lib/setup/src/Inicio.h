@@ -29,7 +29,7 @@ private:
     float R; // Varianza de la medición
     float K; // Ganancia de Kalman
     LPF1 filt;
-    const float Fs = 1000.0f; // 1000 Hz -> T = 1 ms
+    const float Fs = 5000.0f; // 1000 Hz -> T = 1 ms
     const float fc = 10.0f;   // corta  (pasa continua y bajas)
 
 public:
