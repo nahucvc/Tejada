@@ -21,6 +21,7 @@
 #include "adc.h"
 #include "dac.h"
 #include "tim.h"
+#include "usart.h"
 #include "usb.h"
 #include "gpio.h"
 
@@ -95,6 +96,7 @@ int main(void)
   MX_USB_PCD_Init();
   MX_TIM7_Init();
   MX_DAC1_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   HAL_DAC_Start(&hdac1,DAC_CHANNEL_1 );
   HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1,DAC_ALIGN_12B_R, 2500);
