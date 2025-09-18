@@ -67,6 +67,9 @@ void inicializar_pines() {
   pinMode(PIN_I, OUTPUT); digitalWrite(PIN_I, LOW);
   pinMode(PIN_J, OUTPUT); digitalWrite(PIN_J, LOW);
   pinMode(PIN_K, OUTPUT); digitalWrite(PIN_K, LOW);
+  pinMode(PA1, OUTPUT); digitalWrite(PA1, LOW);
+  pinMode(PA0, OUTPUT); digitalWrite(PA0, LOW);
+  
 }
 
 // Procesa un puerto serie sin bloquear hasta encontrar '\n'

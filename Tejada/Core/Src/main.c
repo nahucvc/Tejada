@@ -97,9 +97,10 @@ int main(void)
   MX_TIM7_Init();
   MX_DAC1_Init();
   MX_USART1_UART_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
   HAL_DAC_Start(&hdac1,DAC_CHANNEL_1 );
-  HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1,DAC_ALIGN_12B_R, 2500);
+  HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1,DAC_ALIGN_12B_R, 4030);
   /* USER CODE END 2 */
 
   /* Infinite loop */

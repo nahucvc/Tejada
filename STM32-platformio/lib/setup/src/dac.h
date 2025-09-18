@@ -26,7 +26,6 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-
 #include <Arduino.h>
 
 /* USER CODE BEGIN Includes */

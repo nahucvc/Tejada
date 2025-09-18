@@ -69,6 +69,7 @@ void InicioConfig()
   MX_ADC1_Init();
   MX_TIM8_Init();
   MX_TIM7_Init();
+  MX_TIM3_Init();
   hadc1.ConvCpltCallback = ADC_ConvCpltCallback;
   htim7.PeriodElapsedCallback= TIM_periodicCallback;
   HAL_ADC_Start_IT(&hadc1);
@@ -76,6 +77,9 @@ void InicioConfig()
   HAL_TIM_Base_Start_IT(&htim7);
   MX_DAC1_Init();
   HAL_DAC_Start(&hdac1,DAC_CHANNEL_1 );
+  HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_2);
+  HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1,DAC_ALIGN_12B_R, 0);
   
 }
 
@@ -83,7 +87,18 @@ void InicioConfig()
 
 void update_Aceleracion(float ac)
 {
+uint32_t valorDAC = (uint32_t) ((ac/100.0)*4093.0);  
+hdac1.Instance->DHR12R1=(valorDAC & 0x0FFFu);
+if (Angulo<0)
+{
+  digitalWrite(PA1,LOW);
+  digitalWrite(PA0,HIGH);
+}else
+{
+  digitalWrite(PA0,LOW);
+  digitalWrite(PA1,HIGH);
+}
 
-HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1,DAC_ALIGN_12B_R, (uint16_t) (4096/ac));
+
 
 }
