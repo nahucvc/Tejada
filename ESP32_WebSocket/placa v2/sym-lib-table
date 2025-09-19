@@ -1,0 +1,6 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "OptoRanura")(type "KiCad")(uri "${KIPRJMOD}/OptoRanura.kicad_sym")(options "")(descr ""))
+  (lib (name "ESP32S2MINI")(type "Altium")(uri "${KIPRJMOD}/ESP32S2MINIDEMOS-main/ESP32S2MINI.SchLib")(options "")(descr ""))
+  (lib (name "ESP32_loli")(type "KiCad")(uri "${KIPRJMOD}/ESP32_loli.kicad_sym")(options "")(descr ""))
+)

@@ -14,9 +14,16 @@
 #define PIN_K PB9
 
 // Tamaños de buffer para parser no bloqueante
-#define RX_BUF_LEN 100
+#define RX_BUF_LEN 64
 
 void Comunicacion_Serial();
 void inicializar_pines();
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+bool processSerial(char ch);
+#ifdef __cplusplus
+}
+#endif
 #endif

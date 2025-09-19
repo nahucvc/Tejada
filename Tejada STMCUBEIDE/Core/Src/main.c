@@ -20,6 +20,7 @@
 #include "main.h"
 #include "adc.h"
 #include "tim.h"
+#include "usart.h"
 #include "usb.h"
 #include "gpio.h"
 
@@ -93,6 +94,7 @@ int main(void)
   MX_TIM8_Init();
   MX_USB_PCD_Init();
   MX_TIM7_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
   HAL_ADC_Start_IT(&hadc1);

@@ -4,7 +4,7 @@
 uint32_t ValorADC;
 uint32_t ADC_kalman;
 KalmanFilter k1(0/*valor inicial*/,1 /*incertidumbre inicial*/,0.2 /*Ganacia de Kalman inicial*/ ,1/*Varianza de la medición*/); //objeto con los metodos y varibles necesarios para el filtro
-
+uint8_t caracterSerial;
 // Función para configurar el clock del microcontrolador
 void SystemClock_Config(void)
 {
@@ -12,13 +12,13 @@ void SystemClock_Config(void)
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
   /** Configure the main internal regulator output voltage
-   */
+  */
   HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1_BOOST);
 
   /** Initializes the RCC Oscillators according to the specified parameters
-   * in the RCC_OscInitTypeDef structure.
-   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI48 | RCC_OSCILLATORTYPE_HSE;
+  * in the RCC_OscInitTypeDef structure.
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI48|RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
@@ -34,8 +34,9 @@ void SystemClock_Config(void)
   }
 
   /** Initializes the CPU, AHB and APB buses clocks
-   */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
@@ -46,6 +47,7 @@ void SystemClock_Config(void)
     Error_Handler();
   }
 }
+
 // Función de llamada para cuando se termina de convertir el adc
 void ADC_ConvCpltCallback(__ADC_HandleTypeDef* hadc)
 {
@@ -59,6 +61,17 @@ void TIM_periodicCallback (__TIM_HandleTypeDef *htim)
 {
   Control();
 }
+
+
+void UART_ConCplCallback (__UART_HandleTypeDef *huart)
+{
+  Serial.printf("paso por la interrupcion");
+ //HAL_UART_IRQHandler(&huart1);
+// char  caracter =  huart1.Instance->RDR & 0xFF;
+// processSerial(&caracter);
+
+}
+
 
 // Funcion  para configurar los perifericos
 void InicioConfig()
@@ -80,6 +93,8 @@ void InicioConfig()
   HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_2);
   HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1,DAC_ALIGN_12B_R, 0);
+  MX_USART1_UART_Init();
+  HAL_UART_Receive_IT(&huart1, &caracterSerial, 1);
   
 }
 

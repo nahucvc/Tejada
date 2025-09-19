@@ -4,6 +4,19 @@
 
 extern ADC_HandleTypeDef hadc1;
 extern TIM_HandleTypeDef htim7;
+extern uint8_t caracterSerial;
+extern UART_HandleTypeDef huart1;
+extern bool processSerial(char ch);
+void USART1_IRQHandler(void)
+{
+  /* USER CODE BEGIN USART1_IRQn 0 */
+
+  /* USER CODE END USART1_IRQn 0 */
+  HAL_UART_IRQHandler(&huart1);
+  /* USER CODE BEGIN USART1_IRQn 1 */
+   processSerial(caracterSerial);
+  /* USER CODE END USART1_IRQn 1 */
+}
 
 void NMI_Handler(void)
 {

@@ -6,7 +6,9 @@
 #include "stm32g4xx_it.h"
 #include "tim.h"
 #include "dac.h"
+#include "usart.h"
 #include <Control.h>
+#include <Comunicacion.h>
 extern uint32_t ValorADC;
 extern uint32_t ADC_kalman;
 
