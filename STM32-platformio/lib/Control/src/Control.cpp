@@ -63,9 +63,9 @@ void Control()
 #ifdef METRICA
     Serial.printf(">valorADC:%d\n", ValorADC);
     Serial.printf(">kalman:%d\n", ADC_kalman);
-    Serial.printf(">aceleracion:%f\n", Aceleracion);
-    Serial.printf(">AnguloReferencia:%f\n", Angulo);
-    Serial.printf(">Error:%f\n", Error);
+    Serial.printf(">aceleracion:%.2f\n", Aceleracion);
+    Serial.printf(">AnguloReferencia:%.2f\n", Angulo);
+    Serial.printf(">Error:%.2f\n", Error);
 
 #endif
     if (milisegundos >= APAGADO_ACELERACION_MS)

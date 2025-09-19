@@ -1,6 +1,10 @@
 #include "Comunicacion.h"
 #include <ctype.h>
 
+KalmanFilter k2(0,1 ,0.2 ,3); //objeto con los metodos y varibles necesarios para el filtro
+
+
+
 // --- Estructura y helpers ---
 struct Command {
   char cmd;    // primer carácter (comando)
@@ -51,8 +55,19 @@ static void update_Variables(const Command& dato) {
     case 'I': digitalWrite(PIN_I, (bool)dato.value); break;
     case 'J': digitalWrite(PIN_J, (bool)dato.value); break;
     case 'K': digitalWrite(PIN_K, (bool)dato.value); break;
-    case 'A': Aceleracion = dato.value; AC_Recibido = 1; break;
-    case 'B': Angulo = dato.value; break;
+    case 'A': 
+    if ((dato.value<100) && (dato.value>-1))
+    {
+     Aceleracion = dato.value; AC_Recibido = 1;
+    }
+     break;
+    case 'B': 
+    
+    if ((dato.value<180) && (dato.value>-180))
+    {
+      Angulo = dato.value;
+    }
+         break;
     default: /* ignorar comando desconocido */ break;
   }
 }
