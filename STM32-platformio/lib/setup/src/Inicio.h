@@ -7,11 +7,12 @@
 #include "tim.h"
 #include "dac.h"
 #include "usart.h"
+#include "dma.h"
 #include <Control.h>
 #include <Comunicacion.h>
 extern uint32_t ValorADC;
 extern uint32_t ADC_kalman;
-
+extern uint8_t bufer[30];
 // funcion para actualizar el acelerador
 void update_Aceleracion(float ac);
 

@@ -4,7 +4,7 @@
 uint32_t ValorADC;
 uint32_t ADC_kalman;
 KalmanFilter k1(0/*valor inicial*/,1 /*incertidumbre inicial*/,0.2 /*Ganacia de Kalman inicial*/ ,1/*Varianza de la medición*/); //objeto con los metodos y varibles necesarios para el filtro
-uint8_t caracterSerial;
+uint8_t bufer[30];
 // Función para configurar el clock del microcontrolador
 void SystemClock_Config(void)
 {
@@ -63,16 +63,6 @@ void TIM_periodicCallback (__TIM_HandleTypeDef *htim)
 }
 
 
-void UART_ConCplCallback (__UART_HandleTypeDef *huart)
-{
-  Serial.printf("paso por la interrupcion");
- //HAL_UART_IRQHandler(&huart1);
-// char  caracter =  huart1.Instance->RDR & 0xFF;
-// processSerial(&caracter);
-
-}
-
-
 // Funcion  para configurar los perifericos
 void InicioConfig()
 {
@@ -94,7 +84,7 @@ void InicioConfig()
   HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_2);
   HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1,DAC_ALIGN_12B_R, 0);
   MX_USART1_UART_Init();
-  HAL_UART_Receive_IT(&huart1, &caracterSerial, 1);
+  HAL_UART_Receive_DMA(&huart1,bufer,30);
   
 }
 
