@@ -22,7 +22,7 @@ void Recibirdatos(void *art, uint8_t *datos, size_t len)
 
         Serial.printf(">angulo: %.2f\n", angulo);
         if (Myserial.availableForWrite() > 10) {
-            Myserial.printf("{B:%.3f}\n",  angulo);
+            Myserial.printf("{B:%.4f}\n",  angulo);
             
         }
     }
@@ -33,7 +33,7 @@ void Recibirdatos(void *art, uint8_t *datos, size_t len)
 
         Serial.printf(">aceleracion: %.2f\n", aceleracion);
         if (Myserial.availableForWrite() > 10) {
-            Myserial.printf("{A:%.3f}\n", aceleracion);
+            Myserial.printf("{A:%.4f}\n", aceleracion);
             
         }
     }

@@ -28,7 +28,7 @@ const state = {
 };
 
 // ---- Loop de transmisión (cada 100 ms) ----
-const TX_INTERVAL_MS = 50;
+const TX_INTERVAL_MS = 20;
 setInterval(() => {
   if (webSocket && webSocket.readyState === WebSocket.OPEN) {
     webSocket.send(JSON.stringify({ angle: state.angle, ac: state.accel }));

@@ -1,19 +1,73 @@
 
 #include <Arduino.h>
 #include <servidor.h>
+#include <SPI.h>
+#include <Ethernet_Generic.h>
+
+#define ETH_CS    12
+#define ETH_RST   12   // si no lo usas pon -1
+#define ETH_MOSI  11
+#define ETH_MISO  9
+#define ETH_SCK   7
+
+#define NUMBER_OF_MAC      20
+
+byte mac[][NUMBER_OF_MAC] =
+{
+  { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0x01 },
+  { 0xDE, 0xAD, 0xBE, 0xEF, 0xBE, 0x02 },
+  { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0x03 },
+  { 0xDE, 0xAD, 0xBE, 0xEF, 0xBE, 0x04 },
+  { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0x05 },
+  { 0xDE, 0xAD, 0xBE, 0xEF, 0xBE, 0x06 },
+  { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0x07 },
+  { 0xDE, 0xAD, 0xBE, 0xEF, 0xBE, 0x08 },
+  { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0x09 },
+  { 0xDE, 0xAD, 0xBE, 0xEF, 0xBE, 0x0A },
+  { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0x0B },
+  { 0xDE, 0xAD, 0xBE, 0xEF, 0xBE, 0x0C },
+  { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0x0D },
+  { 0xDE, 0xAD, 0xBE, 0xEF, 0xBE, 0x0E },
+  { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0x0F },
+  { 0xDE, 0xAD, 0xBE, 0xEF, 0xBE, 0x10 },
+  { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0x11 },
+  { 0xDE, 0xAD, 0xBE, 0xEF, 0xBE, 0x12 },
+  { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0x13 },
+  { 0xDE, 0xAD, 0xBE, 0xEF, 0xBE, 0x14 },
+};
+
+// Select the IP address according to your local network
+IPAddress ip(192, 168, 2, 222);
+
+// Google DNS Server IP
+IPAddress myDns(8, 8, 8, 8);
+
+
 
 HardwareSerial Myserial(1);
-const char* SSID_AP     = "ESP32_AP";
+const char* SSID_AP     = "Auto";
 const char* PASS_AP     = "123456789";   // mínimo 8 caracteres (WPA2)
 
 IPAddress local_ip(192, 168, 4, 1);
 IPAddress gateway (192, 168, 4, 1);
 IPAddress subnet  (255, 255, 255, 0);
+
+
+#define W5500_SCK   7
+#define W5500_MISO  9
+#define W5500_MOSI  11
+#define W5500_CS    12
+#define W5500_RST   17 
+
+
+IPAddress ETH_IP(192,168,0,4 );
+
+
 float angulo , aceleracion;
 
 void setup()
 {
-  
+  SPI.begin(W5500_SCK, W5500_MISO, W5500_MOSI, W5500_CS);
   Serial.begin(115200);
   Myserial.begin(115200, SERIAL_8N1, 37, 38);
   WiFi.mode(WIFI_AP);
@@ -25,7 +79,11 @@ void setup()
   bool ok = WiFi.softAP(SSID_AP, PASS_AP, 6, false, 4);
   Serial.println(ok ? "AP levantado OK" : "Error al iniciar AP");
   Serial.print("IP del AP: ");
-  Serial.println(WiFi.softAPIP()); 
+  Serial.println(WiFi.softAPIP());
+  Ethernet.begin(mac[5],&SPI, (int) 200,(int) 200);
+  Ethernet.setLocalIP(ETH_IP);
+  Ethernet.setSubnetMask(subnet);
+ 
   IniciarServidor();
  
 }
@@ -37,3 +95,7 @@ void loop()
 
   
 }
+
+
+
+
