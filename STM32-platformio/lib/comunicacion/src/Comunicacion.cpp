@@ -115,6 +115,8 @@ void inicializar_pines()
   digitalWrite(PA1, LOW);
   pinMode(PA0, OUTPUT);
   digitalWrite(PA0, LOW);
+  pinMode(PA5,OUTPUT);
+  digitalWrite(PA5,HIGH);
 }
 
 // Procesa un puerto serie sin bloquear hasta encontrar '\n'
@@ -264,7 +266,7 @@ extern UART_HandleTypeDef huart1;
 void Comunicacion_Serial()
 {
   // Procesar ambos puertos sin bloquear
- // (void)processSerialUSB(Serial, rx0, rx0_len);
+  (void)processSerialUSB(Serial, rx0, rx0_len);
   Command m;
     if (parseCmdVal(bufer, sizeof(bufer), m.cmd, m.value)) {
     update_Variables(m);

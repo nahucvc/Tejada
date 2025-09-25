@@ -2,9 +2,9 @@
 
 float Aceleracion = 0;
 bool AC_Recibido = 0;
-float Angulo = 0;
-double ceE[3] = {0.179104477611940, -0.139303482587065, 0};
-double ceS[3] = {1, 0.990049751243781, 0};
+float Angulo = 90;
+double ceE[3] = {6,0, 0};
+double ceS[3] = {1, 0, 0};
 double Vs[3] = {0};
 double Ve[3] = {0};
 float anguloRuedas;
@@ -13,18 +13,26 @@ float Error;
 void GiraDerecha(float duty)
 {
     htim3.Instance->CCR1 = 0;
-    htim3.Instance->CCR2 = (uint16_t)duty * 17000;
+    htim3.Instance->CCR2 = (uint16_t) (duty * 17000);
 }
 void GiraIquierda(float duty)
 {
     htim3.Instance->CCR2 = 0;
-    htim3.Instance->CCR1 = (uint16_t)duty * 17000;
+    htim3.Instance->CCR1 = (uint16_t) (duty * 17000);
 }
 
 void Direccion()
 {
-    anguloRuedas = -0.087804 * ADC_kalman + 446.7;
-    Error = (abs(Angulo) - anguloRuedas) / 180;
+    if (ADC_kalman >= 1857)
+    {
+        anguloRuedas= -0.159*ADC_kalman+385.2;
+    }else
+    {
+        anguloRuedas= -0.1737*ADC_kalman+412.59;
+    }
+    
+    
+    Error = (abs(Angulo) - anguloRuedas) / 90;
     Ve[2] = Ve[1];
     Ve[1] = Ve[0];
     Ve[0] = Error;
@@ -66,6 +74,7 @@ void Control()
     Serial.printf(">AC:%.4f\n", Aceleracion);
     Serial.printf(">AngleRef:%.4f\n", Angulo);
     Serial.printf(">Error:%.4f\n", Error);
+    Serial.printf(">Vs:%.4f\n", Vs[0]);
 
 #endif
     if (milisegundos >= APAGADO_ACELERACION_MS)

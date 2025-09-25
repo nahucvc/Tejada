@@ -131,12 +131,16 @@ void setup()
 {
   Serial.begin(115200);
   Myserial.begin(115200, SERIAL_8N1, 37, 38);
-  while (!Serial)
-  {
-    ;
-  }
   Serial.println(F("\n[BOOT] Arrancando..."));
+  WiFi.mode(WIFI_AP);
+  WiFi.softAPConfig(local_ip, gateway, subnet);
 
+  // softAP(ssid, pass, canal, oculto, max_conexiones)
+  bool ok = WiFi.softAP(SSID_AP, PASS_AP, 6, false, 4);
+  Serial.println(ok ? "AP levantado OK" : "Error al iniciar AP");
+  Serial.print("IP del AP: ");
+  Serial.println(WiFi.softAPIP());
+  IniciarServidor();
   if (!startW5500_Blocking(0))
   {
     Serial.println(F("[BOOT] Falla en W5500. Sistema detenido."));
@@ -145,26 +149,20 @@ void setup()
       delay(1000);
     }
   }
-  WiFi.mode(WIFI_AP);
+  
 
   // IP del AP (opcional: si no lo ponés, usa 192.168.4.1 por defecto)
-  WiFi.softAPConfig(local_ip, gateway, subnet);
-
-  // softAP(ssid, pass, canal, oculto, max_conexiones)
-  bool ok = WiFi.softAP(SSID_AP, PASS_AP, 6, false, 4);
-  Serial.println(ok ? "AP levantado OK" : "Error al iniciar AP");
-  Serial.print("IP del AP: ");
-  Serial.println(WiFi.softAPIP());
+  
   Ethernet.begin(mac[5],&SPI, (int) 200,(int) 200);
   Ethernet.setLocalIP(ETH_IP);
   Ethernet.setSubnetMask(subnet);
   
   Serial.println(F("[BOOT] W5500 listo. Iniciando servidor..."));
 
-  IniciarServidor();
+  
 }
 
 void loop()
 {
-  AtenderEthernet();
+  
 }
