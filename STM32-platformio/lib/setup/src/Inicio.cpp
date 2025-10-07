@@ -83,8 +83,8 @@ void InicioConfig()
   HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_2);
   HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1,DAC_ALIGN_12B_R, 0);
-  MX_USART1_UART_Init();
-  HAL_UART_Receive_DMA(&huart1,bufer,30);
+  //MX_USART1_UART_Init();
+  //HAL_UART_Receive_DMA(&huart1,bufer,30);
   
 }
 

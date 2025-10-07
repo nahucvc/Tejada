@@ -256,26 +256,53 @@ bool parseCmdVal(uint8_t *buf, size_t len, char &outCmd, float &outVal) {
   return false; // no se encontró objeto válido
 }
 
+static bool processSerialHW( HardwareSerial &ser, char *buf, size_t &len)
+{
+  while (ser.available() > 0)
+  {
+    int ch = ser.read();
+    if (ch < 0)
+      break;
+
+    if (ch == '\r')
+      continue; // ignorar CR
+    if (ch == '\n')
+    { // fin de línea -> parsear
+      buf[len] = '\0';
+      if (len > 0)
+      {
+        Command cmd;
+        if (parse_line(buf, cmd))
+        {
+          update_Variables(cmd);
+        }
+      }
+      len = 0;
+      return true;
+    }
+    else
+    {
+      if (len < (RX_BUF_LEN - 1))
+      {
+        buf[len++] = (char)ch;
+      }
+      else
+      {
+        // overflow: reset o consumir hasta '\n'
+        len = 0;
+      }
+    }
+  }
+  return false;
+}
 
 
 
-
-
-
-extern UART_HandleTypeDef huart1;
 void Comunicacion_Serial()
 {
   // Procesar ambos puertos sin bloquear
   (void)processSerialUSB(Serial, rx0, rx0_len);
-  Command m;
-    if (parseCmdVal(bufer, sizeof(bufer), m.cmd, m.value)) {
-    update_Variables(m);
-  
-    }
-
-
- 
-  
-  
+   
+  (void)processSerialHW(Serial1,rx1,rx1_len);
   
 }

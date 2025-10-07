@@ -19,10 +19,12 @@
 void Comunicacion_Serial();
 void inicializar_pines();
 
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
-bool processSerial(char ch);
+
 #ifdef __cplusplus
 }
 #endif
