@@ -1,0 +1,10 @@
+../Core/Code/Comunicacion/SerialUSB.h:17:5:SerialUSB::SerialUSB()	16	static
+../Core/Code/Comunicacion/SerialUSB.cpp:14:8:size_t SerialUSB::queueFree() const	16	static
+../Core/Code/Comunicacion/SerialUSB.cpp:20:8:size_t SerialUSB::queueCount() const	16	static
+../Core/Code/Comunicacion/SerialUSB.cpp:25:6:void SerialUSB::queuePushBytes(const uint8_t*, size_t)	32	static
+../Core/Code/Comunicacion/SerialUSB.cpp:38:8:size_t SerialUSB::queuePopBytes(uint8_t*, size_t)	32	static
+../Core/Code/Comunicacion/SerialUSB.cpp:49:6:void SerialUSB::tryKickTx()	24	static
+../Core/Code/Comunicacion/SerialUSB.cpp:78:6:)	36	static
+../Core/Code/Comunicacion/SerialUSB.cpp:96:6:void SerialUSB::service()	16	static
+../Core/Code/Comunicacion/SerialUSB.cpp:102:17:void __static_initialization_and_destruction_0()	8	static
+../Core/Code/Comunicacion/SerialUSB.cpp:102:17:cpp)	8	static

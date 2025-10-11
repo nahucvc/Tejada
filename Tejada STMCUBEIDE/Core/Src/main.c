@@ -19,15 +19,16 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
+#include "dac.h"
 #include "dma.h"
 #include "tim.h"
 #include "usart.h"
-#include "usb.h"
+#include "usb_device.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "UserCode.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -59,7 +60,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint32_t ValorADC;
+
 /* USER CODE END 0 */
 
 /**
@@ -94,14 +95,13 @@ int main(void)
   MX_DMA_Init();
   MX_ADC1_Init();
   MX_TIM8_Init();
-  MX_USB_PCD_Init();
   MX_TIM7_Init();
   MX_USART1_UART_Init();
+  MX_USB_Device_Init();
+  MX_TIM3_Init();
+  MX_DAC1_Init();
   /* USER CODE BEGIN 2 */
-
-  HAL_ADC_Start_IT(&hadc1);
-
-  HAL_TIM_Base_Start(&htim8);
+ setup();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -111,6 +111,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  loop();
   }
   /* USER CODE END 3 */
 }
