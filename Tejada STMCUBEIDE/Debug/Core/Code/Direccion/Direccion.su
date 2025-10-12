@@ -9,7 +9,7 @@ C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.external
 ../Core/Code/Direccion/Direccion.cpp:39:6:void GiraIquierda(float)	16	static
 ../Core/Code/Direccion/Direccion.cpp:45:6:void Direccion()	16	static
 ../Core/Code/Direccion/Direccion.cpp:78:6:void update_Aceleracion(float)	24	static
-../Core/Code/Direccion/Direccion.cpp:98:6:void Control()	8	static
-../Core/Code/Direccion/Direccion.cpp:132:6:void InterrupcionADC()	8	static
-../Core/Code/Direccion/Direccion.cpp:136:1:void __static_initialization_and_destruction_0()	8	static
-../Core/Code/Direccion/Direccion.cpp:136:1:cpp)	8	static
+../Core/Code/Direccion/Direccion.cpp:99:6:void Control()	8	static
+../Core/Code/Direccion/Direccion.cpp:133:6:void InterrupcionADC()	8	static
+../Core/Code/Direccion/Direccion.cpp:137:1:void __static_initialization_and_destruction_0()	8	static
+../Core/Code/Direccion/Direccion.cpp:137:1:cpp)	8	static

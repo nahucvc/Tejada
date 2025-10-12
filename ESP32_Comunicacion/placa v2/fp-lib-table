@@ -1,6 +1,0 @@
-(fp_lib_table
-  (version 7)
-  (lib (name "ESP32 30pines")(type "KiCad")(uri "C:/Users/Nahuel/Pictures/Libreria ESP32 30 pines/kicad/ESP32 30pines.pretty")(options "")(descr ""))
-  (lib (name "LibreriaOpto")(type "KiCad")(uri "${KIPRJMOD}/LibreriaOpto.pretty")(options "")(descr ""))
-  (lib (name "ESP32_loli")(type "KiCad")(uri "${KIPRJMOD}/ESP32_loli.pretty")(options "")(descr ""))
-)

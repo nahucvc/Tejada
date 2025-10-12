@@ -79,6 +79,7 @@ void update_Aceleracion(float ac)
 {
 uint32_t valorDAC = (uint32_t) ((ac/100.0)*4093.0);
 hdac1.Instance->DHR12R1=(valorDAC & 0x0FFFu);
+
 if (Angulo<0)
 {
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_RESET);
