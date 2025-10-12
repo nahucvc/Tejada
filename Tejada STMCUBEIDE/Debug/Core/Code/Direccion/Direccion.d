@@ -38,7 +38,15 @@ Core/Code/Direccion/Direccion.o: ../Core/Code/Direccion/Direccion.cpp \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h \
- C:/Users/Nahuel/Desktop/GNA/Tejada/Tejada\ STMCUBEIDE/Core/Code/Comunicacion/SerialUSB.h
+ C:/Users/Nahuel/Desktop/GNA/Tejada/Tejada\ STMCUBEIDE/Core/Code/Comunicacion/SerialUSB.h \
+ ../USB_Device/App/usbd_cdc_if.h \
+ ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h \
+ ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
+ ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
+ ../USB_Device/Target/usbd_conf.h \
+ ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h \
+ ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
+ ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h
 ../Core/Code/Direccion/Direccion.h:
 C:/Users/Nahuel/Desktop/GNA/Tejada/Tejada\ STMCUBEIDE/Core/Code/UserCode/UserCode.h:
 ../Core/Inc/main.h:
@@ -80,3 +88,11 @@ C:/Users/Nahuel/Desktop/GNA/Tejada/Tejada\ STMCUBEIDE/Core/Code/UserCode/UserCod
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h:
 C:/Users/Nahuel/Desktop/GNA/Tejada/Tejada\ STMCUBEIDE/Core/Code/Comunicacion/SerialUSB.h:
+../USB_Device/App/usbd_cdc_if.h:
+../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h:
+../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
+../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
+../USB_Device/Target/usbd_conf.h:
+../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h:
+../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
+../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h:

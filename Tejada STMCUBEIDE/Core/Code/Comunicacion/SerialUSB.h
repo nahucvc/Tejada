@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include "main.h"
 #include <stdarg.h>
+#include "usbd_cdc_if.h"
 
 
 class SerialUSB {
@@ -24,10 +25,10 @@ public:
 
 private:
     // Buffer temporal para formatear (vsnprintf)
-    char fmtBuffer[500];
+    char fmtBuffer[100];
 
     // Cola de transmisión (ajustá el tamaño según tu RAM disponible)
-    static constexpr size_t TX_QUEUE_SIZE = 500;
+    static constexpr size_t TX_QUEUE_SIZE = 1200;
     uint8_t txQueue[TX_QUEUE_SIZE];
     volatile size_t qHead = 0;   // índice de escritura
     volatile size_t qTail = 0;   // índice de lectura

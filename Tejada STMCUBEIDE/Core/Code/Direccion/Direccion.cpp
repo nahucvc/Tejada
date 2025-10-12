@@ -6,6 +6,7 @@
  */
 #include "Direccion.h"
 #include "SerialUSB.h"
+#include <string.h>
 #define METRICA
 #define APAGADO_ACELERACION_MS 4000
 extern TIM_HandleTypeDef htim3;
@@ -111,12 +112,12 @@ void Control()
     }
 
 #ifdef METRICA
-    Serial.printf("\n>ADC:%d\n", ValorADC);
-    Serial.printf(">ADC_K:%f\n", ADC_kalman);
-    Serial.printf(">AC:%.4f\n", Aceleracion);
-    Serial.printf(">AngleRef:%f\n", Angulo);
-    Serial.printf(">Error:%f\n", Error);
-    Serial.printf(">Vs:%f\n", Vs[0]);
+    static char datos[100];
+    memset(datos, 0, 100);
+    sprintf(datos,"\n>ADC:%d\n>ADC_K:%f\n>AC:%.4f\n>AngleRef:%f\n>Error:%f\n>Vs:%f\n",(int) ValorADC,ADC_kalman,Aceleracion,Angulo,Error,Vs[0] );
+    uint8_t * puntero = (uint8_t *) datos;
+    CDC_Transmit_FS( puntero, sizeof(datos));
+
 
 #endif
     if (milisegundos >= APAGADO_ACELERACION_MS)

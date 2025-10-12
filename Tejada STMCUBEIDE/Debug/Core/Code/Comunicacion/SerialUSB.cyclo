@@ -1,4 +1,4 @@
-../Core/Code/Comunicacion/SerialUSB.h:17:5:SerialUSB::SerialUSB()	1
+../Core/Code/Comunicacion/SerialUSB.h:18:5:SerialUSB::SerialUSB()	1
 ../Core/Code/Comunicacion/SerialUSB.cpp:14:8:size_t SerialUSB::queueFree() const	2
 ../Core/Code/Comunicacion/SerialUSB.cpp:20:8:size_t SerialUSB::queueCount() const	2
 ../Core/Code/Comunicacion/SerialUSB.cpp:25:6:void SerialUSB::queuePushBytes(const uint8_t*, size_t)	3

@@ -1721,16 +1721,6 @@
 	)
 	(wire
 		(pts
-			(xy 251.46 80.01) (xy 245.11 80.01)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1b6d83ca-35a8-4c32-a8fa-b372a17e3ef4")
-	)
-	(wire
-		(pts
 			(xy 208.28 74.93) (xy 205.74 74.93)
 		)
 		(stroke
@@ -1931,6 +1921,16 @@
 	)
 	(wire
 		(pts
+			(xy 118.11 81.28) (xy 129.54 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "754bd374-c8ab-4feb-a667-18f45842816e")
+	)
+	(wire
+		(pts
 			(xy 152.4 73.66) (xy 162.56 73.66)
 		)
 		(stroke
@@ -1971,16 +1971,6 @@
 	)
 	(wire
 		(pts
-			(xy 245.11 80.01) (xy 245.11 82.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "963d483d-51f6-4ac5-8730-8ce613d66205")
-	)
-	(wire
-		(pts
 			(xy 247.65 76.2) (xy 247.65 74.93)
 		)
 		(stroke
@@ -2008,6 +1998,16 @@
 			(type default)
 		)
 		(uuid "bbde579c-a6be-42dc-899c-a4bda812068b")
+	)
+	(wire
+		(pts
+			(xy 208.28 87.63) (xy 208.28 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c1b7a124-fdcf-4728-8b49-26e92ca13b72")
 	)
 	(wire
 		(pts
@@ -2081,16 +2081,6 @@
 	)
 	(wire
 		(pts
-			(xy 245.11 82.55) (xy 241.3 82.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dbf28ccd-d290-4b91-9423-a4c880ba39c5")
-	)
-	(wire
-		(pts
 			(xy 205.74 74.93) (xy 205.74 72.39)
 		)
 		(stroke
@@ -2158,6 +2148,16 @@
 			(type default)
 		)
 		(uuid "f794f319-499b-4f06-b584-38b921c96a6e")
+	)
+	(wire
+		(pts
+			(xy 201.93 87.63) (xy 208.28 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f89f8401-3e20-448d-acda-0de62d2eea69")
 	)
 	(wire
 		(pts
@@ -2443,28 +2443,6 @@
 			)
 		)
 	)
-	(global_label "RTSN"
-		(shape input)
-		(at 251.46 80.01 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "95fcd284-af22-43bb-ad66-e9cc3aa1c12c")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 259.2228 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "CS"
 		(shape input)
 		(at 163.83 68.58 0)
@@ -2483,6 +2461,28 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "INT"
+		(shape input)
+		(at 201.93 87.63 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "b9625e7e-ff62-4a76-ba14-53c54ff0af1d")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 196.0419 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -2527,6 +2527,28 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "INT"
+		(shape input)
+		(at 118.11 81.28 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e1de21e3-55ea-4eca-8856-632754415e86")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 112.2219 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)

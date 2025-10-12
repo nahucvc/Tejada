@@ -19,7 +19,7 @@ void setup()
 {
   Serial.begin(115200);
   Myserial.begin(115200, SERIAL_8N1, 37, 38);
-   while (!Serial);
+  
   Serial.println(F("\n[BOOT] Arrancando..."));
   WiFi.mode(WIFI_AP);
   WiFi.softAPConfig(local_ip, gateway, subnet);
