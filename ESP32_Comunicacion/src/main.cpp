@@ -12,8 +12,8 @@ float aceleracion = 0;
 #define W5500_SCK 7
 #define W5500_MISO 9
 #define W5500_MOSI 11
-#define W5500_CS 12
-#define W5500_RST 5
+#define W5500_CS 1
+#define W5500_RST 2
 
 // MACs
 #define MAC_BYTES 6
@@ -27,7 +27,7 @@ byte mac[][MAC_BYTES] =
 };
 
 // IP estática (solo si USE_DHCP == 0)
-IPAddress ETH_IP(192, 168, 0, 4);
+IPAddress ETH_IP(192, 168, 0, 10);
 IPAddress ETH_GW(192, 168, 0, 1);
 IPAddress ETH_NETMASK(255, 255, 255, 0);
 IPAddress ETH_DNS(8, 8, 8, 8);
@@ -140,7 +140,7 @@ void setup()
   Serial.println(ok ? "AP levantado OK" : "Error al iniciar AP");
   Serial.print("IP del AP: ");
   Serial.println(WiFi.softAPIP());
-  IniciarServidor();
+  
   if (!startW5500_Blocking(0))
   {
     Serial.println(F("[BOOT] Falla en W5500. Sistema detenido."));
@@ -158,7 +158,7 @@ void setup()
   Ethernet.setSubnetMask(subnet);
   
   Serial.println(F("[BOOT] W5500 listo. Iniciando servidor..."));
-
+ IniciarServidor();
   
 }
 

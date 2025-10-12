@@ -191,7 +191,9 @@
       ],
       "track_widths": [
         0.0,
+        1.0,
         1.5,
+        2.0,
         2.5
       ],
       "tuning_pattern_settings": {
@@ -512,7 +514,7 @@
     "last_paths": {
       "gencad": "",
       "idf": "",
-      "netlist": "",
+      "netlist": "./",
       "plot": "cnc/",
       "pos_files": "",
       "specctra_dsn": "",
@@ -626,7 +628,7 @@
   "sheets": [
     [
       "421e6652-dd22-4ed5-8b26-cea0b093f573",
-      "Raíz"
+      "Root"
     ]
   ],
   "text_variables": {}
