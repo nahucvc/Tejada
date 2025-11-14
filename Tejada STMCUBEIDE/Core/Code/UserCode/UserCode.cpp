@@ -16,6 +16,7 @@ extern DAC_HandleTypeDef hdac1;
 
 void setup()
 {
+
  HAL_UART_Receive_DMA(&huart1, buffer, 60);
  HAL_ADC_Start_DMA(&hadc1,&ValorADC, 1);
  HAL_TIM_Base_Start_IT(&htim8); //5k

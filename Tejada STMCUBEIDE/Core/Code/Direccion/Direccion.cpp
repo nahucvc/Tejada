@@ -35,12 +35,12 @@ void InterrupcionFiltro()
 void GiraDerecha(float duty)
 {
     htim3.Instance->CCR1 = 0;
-    htim3.Instance->CCR2 = (uint16_t) (duty * 17000);
+    htim3.Instance->CCR2 = (uint16_t) (duty * 16999);
 }
 void GiraIquierda(float duty)
 {
     htim3.Instance->CCR2 = 0;
-    htim3.Instance->CCR1 = (uint16_t) (duty * 17000);
+    htim3.Instance->CCR1 = (uint16_t) (duty * 16999);
 }
 
 void Direccion()
@@ -54,7 +54,7 @@ void Direccion()
     }
 
 
-    Error = (abs(Angulo) - anguloRuedas) / 90;
+    Error = (abs(Angulo) - anguloRuedas) / 90.0;
     Ve[2] = Ve[1];
     Ve[1] = Ve[0];
     Ve[0] = Error;
@@ -94,6 +94,21 @@ if (Angulo<0)
 }
 
 
+void UART1_ResetDMA(void)
+{
+    HAL_UART_DMAStop(&huart1);
+
+    __HAL_UART_CLEAR_OREFLAG(&huart1);
+    __HAL_UART_CLEAR_FEFLAG(&huart1);
+    __HAL_UART_CLEAR_NEFLAG(&huart1);
+    __HAL_UART_CLEAR_PEFLAG(&huart1);
+
+    huart1.RxState = HAL_UART_STATE_READY;
+    huart1.gState  = HAL_UART_STATE_READY;
+
+    HAL_UART_Receive_DMA(&huart1, buffer, 60);
+}
+
 
 
 
@@ -125,6 +140,11 @@ void Control()
         Aceleracion = 0;
         milisegundos = 0;
     }
+    if (milisegundos >= 900)
+        {
+    	 UART1_ResetDMA();
+        }
+
 
     Direccion();
     update_Aceleracion(Aceleracion);
