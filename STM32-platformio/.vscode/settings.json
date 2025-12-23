@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "array": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "dac.h": "c",
+        "stm32g4xx_it.h": "c"
+    }
+}
