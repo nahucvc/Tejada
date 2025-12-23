@@ -1,0 +1,7 @@
+../UserCode/control.cpp:79:10:uint32_t CalcularCRC(Datos_Control*)	1
+../UserCode/control.cpp:91:6:void iniciar_filtro1()	1
+../UserCode/control.cpp:98:6:void trasmitir_datos()	2
+../UserCode/control.cpp:108:6:void control_break_tim_8()	1
+../UserCode/control.cpp:116:6:void loop_break_control()	3
+../UserCode/control.cpp:128:6:void control_loop()	4
+../UserCode/control.cpp:144:1:cpp)	1
