@@ -72,21 +72,36 @@ public:
 #define  CORRIENTE_TRANSFORMADOR       adcBuffer[1]
 
 Datos_Control datos_control = { 2000, 0, 1000, 0, 0, 0, 0, 0 };
-
+Datos_Control datos_tx;
 KalmanFilter k1(0, 1, 2, 1);
 extern CRC_HandleTypeDef hcrc;
 
-uint32_t CalcularCRC(Datos_Control *datos) {
-	uint32_t crc;
-	uint32_t *ptr = (uint32_t*) datos;
 
-	// Número de palabras de 32 bits SIN CRCdata
-	uint32_t length = (sizeof(Datos_Control) - sizeof(uint32_t)) / 4;
+#include <cstdint>
+#include <cstddef>
 
-	crc = HAL_CRC_Calculate(&hcrc, ptr, length);
+uint32_t calcularCRC32(const uint8_t* data, size_t length)
+{
+    uint32_t crc = 0xFFFFFFFF;        // Valor inicial
+    const uint32_t poly = 0xEDB88320; // Polinomio reflejado CRC-32
 
-	return crc;
+    for (size_t i = 0; i < length; i++)
+    {
+        crc ^= data[i];
+
+        for (uint8_t bit = 0; bit < 8; bit++)
+        {
+            if (crc & 1)
+                crc = (crc >> 1) ^ poly;
+            else
+                crc >>= 1;
+        }
+    }
+
+    return ~crc; // Inversión final
 }
+
+
 
 void iniciar_filtro1() {
 	//memset(estado_filtro, 0, sizeof(estado_filtro));
@@ -99,8 +114,9 @@ void trasmitir_datos(void) {
 	uint8_t *puntero = (uint8_t*) BufferTX;
 	*puntero = 36; // inicio de trama
 	puntero++;
-	datos_control.CRCdata = CalcularCRC(&datos_control);
-	memcpy(puntero, &datos_control, DATOS_CONTROL_SIZE);
+	datos_tx=datos_control;
+	datos_tx.CRCdata= calcularCRC32((uint8_t *) &datos_control,DATOS_CONTROL_SIZE -4 );
+	memcpy(puntero, &datos_tx, DATOS_CONTROL_SIZE);
 }
 
 bool flag_break_tim8 = false;

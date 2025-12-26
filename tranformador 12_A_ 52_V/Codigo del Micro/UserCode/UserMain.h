@@ -13,14 +13,14 @@
 extern "C" {
 #endif
 #define DATOS_CONTROL_SIZE sizeof(struct Datos_Control)
-struct Datos_Control
+struct __attribute__((packed)) Datos_Control
 {
 	uint32_t voltaje_referencia;
 	uint32_t voltaje_ADC;
 	uint32_t corriente_maxima;
 	uint32_t coriente_ADC;
 	uint32_t voltaje_bateria;
-	float32_t error;
+	float error;
 	uint32_t duty;
 	uint32_t CRCdata;
 };

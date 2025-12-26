@@ -38,8 +38,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h \
- C:/Users/Nahuel/Documents/Cargador/UserCode/UserMain.h \
- C:/Users/Nahuel/Documents/Cargador/UserCode/control.h \
+ C:/Users/Nahuel/Desktop/Tejada/tranformador\ 12_A_\ 52_V/Codigo\ del\ Micro/UserCode/UserMain.h \
+ C:/Users/Nahuel/Desktop/Tejada/tranformador\ 12_A_\ 52_V/Codigo\ del\ Micro/UserCode/control.h \
  ../Middlewares/ST/ARM/DSP/Inc/arm_math.h \
  ../Drivers/CMSIS/Include/cmsis_compiler.h
 ../Core/Inc/main.h:
@@ -82,7 +82,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_tim_ex.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h:
-C:/Users/Nahuel/Documents/Cargador/UserCode/UserMain.h:
-C:/Users/Nahuel/Documents/Cargador/UserCode/control.h:
+C:/Users/Nahuel/Desktop/Tejada/tranformador\ 12_A_\ 52_V/Codigo\ del\ Micro/UserCode/UserMain.h:
+C:/Users/Nahuel/Desktop/Tejada/tranformador\ 12_A_\ 52_V/Codigo\ del\ Micro/UserCode/control.h:
 ../Middlewares/ST/ARM/DSP/Inc/arm_math.h:
 ../Drivers/CMSIS/Include/cmsis_compiler.h:

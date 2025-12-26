@@ -85,11 +85,11 @@ all: main-build
 main-build: Cargador.elf secondary-outputs
 
 dependents:
-	-cd C:/Users/Nahuel/Documents/Cargador/Release && $(MAKE) all
+	-cd C:/Users/Nahuel/Desktop/Tejada/tranformador\ 12_A_\ 52_V/Codigo\ del\ Micro/Release && $(MAKE) all
 
 # Tool invocations
-Cargador.elf Cargador.map: $(OBJS) $(USER_OBJS) C:/Users/Nahuel/Documents/Cargador/Release/Cargador.elf C:\Users\Nahuel\Documents\Cargador\STM32G431CBUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "Cargador.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Nahuel\Documents\Cargador\STM32G431CBUX_FLASH.ld" -Wl,-Map="Cargador.map" -Wl,--gc-sections -static -L../Middlewares/ST/ARM/DSP/Lib --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Cargador.elf Cargador.map: $(OBJS) $(USER_OBJS) C:/Users/Nahuel/Desktop/Tejada/tranformador\ 12_A_\ 52_V/Codigo\ del\ Micro/Release/Cargador.elf C:\Users\Nahuel\Desktop\Tejada\tranformador\ 12_A_\ 52_V\Codigo\ del\ Micro\STM32G431CBUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "Cargador.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Nahuel\Desktop\Tejada\tranformador 12_A_ 52_V\Codigo del Micro\STM32G431CBUX_FLASH.ld" -Wl,-Map="Cargador.map" -Wl,--gc-sections -static -L../Middlewares/ST/ARM/DSP/Lib --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -118,6 +118,6 @@ warn-no-linker-script-specified:
 	@echo 'Warning: No linker script specified. Check the linker settings in the build configuration.'
 
 .PHONY: all clean dependents main-build fail-specified-linker-script-missing warn-no-linker-script-specified
-C:/Users/Nahuel/Documents/Cargador/Release/Cargador.elf:
+C:/Users/Nahuel/Desktop/Tejada/tranformador\ 12_A_\ 52_V/Codigo\ del\ Micro/Release/Cargador.elf:
 
 -include ../makefile.targets
