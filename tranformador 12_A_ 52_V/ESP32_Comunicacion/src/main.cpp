@@ -19,7 +19,7 @@ WiFiUDP udp;
 void setup()
 {
   Serial.begin(115200);
-  Myserial.begin(921600, SERIAL_8N1, 37, 38);
+  Myserial.begin(250000, SERIAL_8N1, 37, 38);
    WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
@@ -39,11 +39,11 @@ void enviarDatosTeleplot(const Datos_Control& d)
   char buffer[256];
 
   int len = snprintf(buffer, sizeof(buffer),
-    "vref:%lu\n"
-    "vadc:%lu\n"
-    "imax:%lu\n"
-    "iadc:%lu\n"
-    "vbat:%lu\n"
+    "vref:%f\n"
+    "vadc:%f\n"
+    "imax:%f\n"
+    "iadc:%f\n"
+    "vbat:%f\n"
     "error:%f\n"
     "duty:%lu\n",
     d.voltaje_referencia,
@@ -68,17 +68,16 @@ void loop()
 
   {
     
-    
-      Serial.println("Datos recibidos:");
-      Serial.printf("Voltaje de referencia :%d\n", datosRx.voltaje_referencia);
-      Serial.printf("Voltaje de ADC :%d\n", datosRx.voltaje_ADC);
-      Serial.printf("corriente Maxima :%d\n", datosRx.corriente_maxima);
-      Serial.printf("corriente ADC %d:\n", datosRx.coriente_ADC);
-      Serial.printf("Voltaje de bateria %d:\n", datosRx.voltaje_bateria);
-      Serial.printf("Duty %d:\n", datosRx.duty);
-      Serial.printf("CRC recibido : %lu\n", datosRx.CRCdata);
-      Serial.printf("*******************************************\n");
+    try
+    {
       enviarDatosTeleplot(datosRx);
+    }
+    catch(const std::exception& e)
+    {
+      Serial.printf("error");
+    }
+    
+      
     
   }
 }

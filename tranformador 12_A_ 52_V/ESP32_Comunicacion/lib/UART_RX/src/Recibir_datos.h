@@ -5,11 +5,11 @@
 
 struct __attribute__((packed)) Datos_Control
 {
-  uint32_t voltaje_referencia;
-  uint32_t voltaje_ADC;
-  uint32_t corriente_maxima;
-  uint32_t coriente_ADC;
-  uint32_t voltaje_bateria;
+  float voltaje_referencia;
+  float voltaje_ADC;
+  float corriente_maxima;
+  float coriente_ADC;
+  float voltaje_bateria;
   float error;
   uint32_t duty;
   uint32_t CRCdata;

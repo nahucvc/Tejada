@@ -19,12 +19,12 @@ extern UART_HandleTypeDef huart1;
 extern TIM_HandleTypeDef htim8;
 extern DAC_HandleTypeDef hdac1;
 extern COMP_HandleTypeDef hcomp1;
-volatile uint32_t adcBuffer[2];
+volatile uint32_t adcBuffer[3];
 volatile uint8_t BufferTX[33] = { 0 };
 
 void setup(void) {
-	HAL_ADC_Start_DMA(&hadc1, (uint32_t*) adcBuffer, 2);
-	HAL_UART_Transmit_DMA(&huart1, (uint8_t*) BufferTX, 33);
+	HAL_ADC_Start_DMA(&hadc1, (uint32_t*) adcBuffer, 3);
+	//HAL_UART_Transmit_DMA(&huart1, (uint8_t*) BufferTX, 33);
 	HAL_TIM_Base_Start_IT(&htim6);
 	HAL_TIM_Base_Start_IT(&htim7);
 

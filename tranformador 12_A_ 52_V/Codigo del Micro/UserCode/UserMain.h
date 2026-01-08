@@ -15,11 +15,11 @@ extern "C" {
 #define DATOS_CONTROL_SIZE sizeof(struct Datos_Control)
 struct __attribute__((packed)) Datos_Control
 {
-	uint32_t voltaje_referencia;
-	uint32_t voltaje_ADC;
-	uint32_t corriente_maxima;
-	uint32_t coriente_ADC;
-	uint32_t voltaje_bateria;
+	float voltaje_referencia;
+	float voltaje_ADC;
+	float corriente_maxima;
+	float coriente_ADC;
+	float voltaje_bateria;
 	float error;
 	uint32_t duty;
 	uint32_t CRCdata;
@@ -31,7 +31,7 @@ void setup(void);
 
 void loop(void);
 
-extern volatile uint32_t adcBuffer[2];
+extern volatile uint32_t adcBuffer[3];
 extern volatile uint8_t BufferTX[33];
 extern TIM_HandleTypeDef htim8;
 #ifdef __cplusplus

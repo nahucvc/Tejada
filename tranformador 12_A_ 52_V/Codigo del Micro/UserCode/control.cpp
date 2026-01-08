@@ -110,12 +110,17 @@ void iniciar_filtro1() {
 
 }
 
+extern UART_HandleTypeDef huart1;
+
 void trasmitir_datos(void) {
 	uint8_t *puntero = (uint8_t*) BufferTX;
 	*puntero = 36; // inicio de trama
 	puntero++;
+
 	datos_tx=datos_control;
+
 	datos_tx.CRCdata= calcularCRC32((uint8_t *) &datos_control,DATOS_CONTROL_SIZE -4 );
+	HAL_UART_Transmit(&huart1, (uint8_t*) BufferTX, 33,10);
 	memcpy(puntero, &datos_tx, DATOS_CONTROL_SIZE);
 }
 
@@ -143,9 +148,9 @@ void loop_break_control() {
 
 void control_loop() {
 	static uint32_t duty_max = htim8.Instance->ARR;
-	datos_control.voltaje_ADC = (adcBuffer[0] - 1994) * 1.61731844f;
-	datos_control.coriente_ADC = (adcBuffer[1] - 1994) * 1.61731844f;
-	datos_control.voltaje_bateria = (adcBuffer[3] - 1994) * 1.61731844f;
+	datos_control.voltaje_ADC = (adcBuffer[0] - 1994.0) * 1.61731844f;
+	datos_control.coriente_ADC = (adcBuffer[1] - 1994.0) * 1.61731844f;
+	datos_control.voltaje_bateria = adcBuffer[2]* 0.0008056f;
 	datos_control.error = datos_control.voltaje_referencia
 			- (float32_t) datos_control.voltaje_ADC;
 	if (datos_control.error > 0) {
