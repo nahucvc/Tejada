@@ -4,16 +4,49 @@
 #include <WiFiUdp.h>
 #include "esp32s2/rom/crc.h"
 #include "Recibir_datos.h"
+#include <queue>
+#include <ArduinoJson.h>
 HardwareSerial Myserial(1);
 
 const char* ssid = "MICRO";
 const char* password = "123456789";
 
-IPAddress teleplotIP(192,168,137,1); 
-const uint16_t teleplotPort = 47269;
+std::queue<Datos_Control> cola;
+constexpr size_t BUFFER_JSON_SIZE = 1500;
+char bufferJson[BUFFER_JSON_SIZE];
+size_t bufferJsonLen = 0;
 
-WiFiUDP udp;
+void enviarDatos()
+{
+  if (cola.empty())
+    return;
 
+  DynamicJsonDocument doc(1500);
+  JsonArray arrayDatos = doc.createNestedArray("datos");
+
+  while (!cola.empty())
+  {
+    Datos_Control d = cola.front();
+    cola.pop();
+
+    JsonObject obj = arrayDatos.createNestedObject();
+    obj["vref"]  = d.voltaje_referencia;
+    obj["vadc"]  = d.voltaje_ADC;
+    obj["imax"]  = d.corriente_maxima;
+    obj["iadc"]  = d.coriente_ADC;
+    obj["vbat"]  = d.voltaje_bateria;
+    obj["error"] = d.error;
+    obj["duty"]  = d.duty;
+  }
+
+  // Serializar en buffer de caracteres
+  bufferJsonLen = serializeJson(doc, bufferJson, BUFFER_JSON_SIZE);
+
+  // Seguridad: terminador nulo por si se usa como string C
+  if (bufferJsonLen < BUFFER_JSON_SIZE)
+    bufferJson[bufferJsonLen] = '\0';
+    ws.textAll(bufferJson);
+}
 
 
 void setup()
@@ -28,36 +61,8 @@ void setup()
 
   Serial.println("\nWiFi conectado");
   Serial.println(WiFi.localIP());
-
-  udp.begin(12345);
-}
-
-
-
-void enviarDatosTeleplot(const Datos_Control& d)
-{
-  char buffer[256];
-
-  int len = snprintf(buffer, sizeof(buffer),
-    "vref:%f\n"
-    "vadc:%f\n"
-    "imax:%f\n"
-    "iadc:%f\n"
-    "vbat:%f\n"
-    "error:%f\n"
-    "duty:%lu\n",
-    d.voltaje_referencia,
-    d.voltaje_ADC,
-    d.corriente_maxima,
-    d.coriente_ADC,
-    d.voltaje_bateria,
-    d.error,
-    d.duty
-  );
-
-  udp.beginPacket(teleplotIP, teleplotPort);
-  udp.write((uint8_t*)buffer, len);
-  udp.endPacket();
+  IniciarServidor();
+ 
 }
 
 
@@ -70,7 +75,7 @@ void loop()
     
     try
     {
-      enviarDatosTeleplot(datosRx);
+      cola.push(datosRx);
     }
     catch(const std::exception& e)
     {
@@ -80,4 +85,5 @@ void loop()
       
     
   }
+  enviarDatos();
 }

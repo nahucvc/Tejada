@@ -18,12 +18,12 @@ void IniciarServidor(void)
     }
 
     // Publicar la carpeta completa en /Telemetry_files
-    server.serveStatic("/Telemetry_files", SPIFFS, "/Telemetry_files");
+    server.serveStatic("/assets", SPIFFS, "/assets");
 
 
 
     server.on("/", [](AsyncWebServerRequest *request)
-              { request->send(SPIFFS, "/Telemetry.html", "text/html"); });
+              { request->send(SPIFFS, "/index.html", "text/html"); });
 
     server.onNotFound(notFound);
     server.begin();
@@ -42,7 +42,7 @@ void EventosSockets(AsyncWebSocket *server, AsyncWebSocketClient *cliente, AwsEv
 
         break;
     case WS_EVT_DISCONNECT:
-        aceleracion=0;
+        
         Serial.printf("cliente Nro %u desconectado\n", cliente->id());
         break;
     case WS_EVT_DATA:
