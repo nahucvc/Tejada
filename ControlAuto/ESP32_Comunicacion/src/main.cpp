@@ -11,8 +11,8 @@ float aceleracion = 0;
 const char *SSID_AP = "Auto";
 const char *PASS_AP = "123456789"; // mínimo 8 caracteres (WPA2)
 
-IPAddress local_ip(192, 168, 4, 1);
-IPAddress gateway(192, 168, 4, 1);
+IPAddress local_ip(192, 168, 0, 50);
+IPAddress gateway(192, 168, 0, 1);
 IPAddress subnet(255, 255, 255, 0);
 
 void setup()
@@ -30,8 +30,10 @@ void setup()
   Serial.println(WiFi.softAPIP());
 
   Serial.println(F("[BOOT] W5500 listo. Iniciando servidor..."));
-  IniciarServidor();
+  
   init_W5500();
+  while (!Serial) { ; }
+  IniciarServidor();
 }
 
 void loop()
